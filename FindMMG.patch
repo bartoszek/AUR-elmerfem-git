@@ -1,0 +1,18 @@
+diff --git a/cmake/Modules/FindMMG.cmake b/cmake/Modules/FindMMG.cmake
+index f84dccef..0c03fba5 100644
+--- a/cmake/Modules/FindMMG.cmake
++++ b/cmake/Modules/FindMMG.cmake
+@@ -19,6 +19,13 @@ IF(MMG_LIBRARY AND MMG_INCLUDE_DIR)
+    RETURN()
+ ENDIF()
+ 
++# Try mmgConfig.cmake for mmg>=5.5.0
++FIND_PACKAGE(mmg)
++IF(mmg_FOUND)
++   SET(MMG_FOUND TRUE)
++  RETURN()
++ENDIF()
++
+ SET(MMG_FOUND FALSE)
+ SET(MMGINCLUDE
+   "${MMGROOT}/include"
