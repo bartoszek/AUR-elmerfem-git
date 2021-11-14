@@ -54,12 +54,14 @@ source=("git+https://github.com/ElmerCSC/elmerfem.git${_fragment}"
         "$_pkgname.desktop"
         "arpack.patch"
         "mmg_properties_list.patch"
+        "vtk9.cmake.patch"
         "FindMMG.patch")
 
 sha256sums=('SKIP'
             'f4b39389e5f258c7860b8d7a6b171fb54bf849dc772f640ac5e7a12c7a384aca'
             '04e73a99d7e8d501a2c7c5211a83257137a30a8b1b5c2f7c7ff6304e0e0a6da9'
             'ce9fc22cad15d8b7b33ca4d17b70e3bf946d50f847a60619aab06d971e8e22ad'
+            '282c32e2e0bc82fbc96d3597a661c1b238114cba247a13f8dc9103a51f3e194b'
             '40158498b071acd8a6ba2d760d3fabada26d989bdc931914f133009a607e6700')
 
 pkgver() {
@@ -70,7 +72,7 @@ prepare() {
   cd "$srcdir/$_pkgname"
   sed -i 's/1 depth/1 ${depth}/g' fem/tests/CMakeLists.txt
   sed -i 's/FALSE/false/g' ElmerGUI/Application/vtkpost/matc.cpp
-  git apply -v "${srcdir}"/{arpack,mmg_properties_list}.patch
+  git apply -v "${srcdir}"/{arpack,mmg_properties_list,vtk9.cmake}.patch
   git apply -v "$srcdir"/FindMMG.patch
 
   sed 's/${MMG_LIBRARY}/Mmg::libmmg3d_so/g' -i fem/src/CMakeLists.txt
