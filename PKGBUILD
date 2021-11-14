@@ -79,6 +79,7 @@ prepare() {
 
   sed 's/${MMG_LIBRARY}/Mmg::libmmg3d_so/g' -i fem/src/CMakeLists.txt
   sed 's/${MMG_LIBRARY}/Mmg::libmmg2d_so/g' -i elmerice/Solvers/MeshAdaptation_2D/CMakeLists.txt
+  sed '/config\.h\.cmake/i set(VERSION ${ELMER_FEM_VERSION})' -i fem/CMakeLists.txt
 }
 
 build() {
